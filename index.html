@@ -96,12 +96,13 @@
         <!-- Header -->
         <header class="header-bg text-white pt-10 pb-16 px-6 text-center rounded-b-[40px] shadow-lg relative z-10">
             <div class="w-24 h-24 mx-auto bg-white rounded-full p-1 mb-4 logo-glow relative z-20">
+                <!-- Using the uploaded logo filename -->
                 <img src="logo.png" alt="Sparkling Stars Logo" class="w-full h-full object-contain rounded-full" onerror="this.src='https://placehold.co/100x100?text=Logo'">
             </div>
             <h2 class="text-orange-400 font-bold uppercase tracking-widest text-xs mb-1">Sparkling Stars Int. School</h2>
             <h1 class="festive-font text-5xl mb-2 font-bold drop-shadow-md">Christmas Show</h1>
             <p class="text-blue-100 text-sm font-light flex justify-center items-center gap-2">
-                <i class="far fa-calendar-alt"></i> Dec 11, 2025 
+                <i class="far fa-calendar-alt"></i> Dec 13, 2024 
                 <span class="w-1 h-1 bg-orange-400 rounded-full"></span> 
                 <i class="far fa-clock"></i> 3:00 PM
             </p>
@@ -127,7 +128,7 @@
             <!-- Footer -->
             <div class="mt-12 text-center text-slate-400 text-xs pb-8">
                 <p class="mb-2"><i class="fas fa-heart text-red-400"></i> Merry Christmas</p>
-                <p>&copy; 2025 Sparkling Stars International School</p>
+                <p>&copy; 2024 Sparkling Stars International School</p>
             </div>
         </div>
     </div>
@@ -241,27 +242,27 @@ By priest and people sungen.
 [Chorus]`
         };
 
-        // --- Program Data ---
+        // --- Program Data (Reordered Chronologically) ---
         const programItems = [
-            { id: 1, title: "Musical Interlude / A.O.G", icon: "music", color: "blue", sub: "" },
-            { id: 2, title: "Opening Prayer", icon: "pray", color: "orange", sub: "" },
-            { id: 3, title: "Purpose of Gathering", icon: "info-circle", color: "blue", sub: "" },
-            { id: 4, title: "Bible Reading", icon: "book-open", color: "purple", sub: "Primary School" },
-            { id: 5, title: "Carol: Once in Royal David's City", icon: "star", color: "red", sub: "Primary School", lyricsKey: "once" },
-            { id: 55, title: "Carol: Ding Dong Merrily on High", icon: "bell", color: "red", sub: "Primary School", lyricsKey: "dingdong" },
-            { id: 6, title: "Drama: The Nativity", icon: "theater-masks", color: "yellow", sub: "Preschool" },
-            { id: 7, title: "Carol: Hark! The Herald Angels Sing", icon: "music", color: "red", sub: "Primary School", lyricsKey: "hark" },
-            { id: 8, title: "Carol: Away in a Manger", icon: "baby", color: "red", sub: "Primary School", lyricsKey: "away" },
-            { id: 9, title: "Poem Recitation", icon: "feather-alt", color: "green", sub: "Primary School" },
-            { id: 10, title: "Carol: O Come, All Ye Faithful", icon: "users", color: "red", sub: "Congregational", lyricsKey: "ocome" },
-            { id: 11, title: "Dance: All I Want for Christmas", icon: "child", color: "pink", sub: "Preschool" },
-            { id: 12, title: "Taekwondo Performance", icon: "fist-raised", color: "orange", sub: "" },
-            { id: 13, title: "Ballet", icon: "running", color: "pink", sub: "" },
-            { id: 14, title: "Musical Interlude", icon: "music", color: "blue", sub: "" },
-            { id: 15, title: "French Song", icon: "globe-europe", color: "indigo", sub: "French Class" },
-            { id: 16, title: "Dance Performance", icon: "child", color: "purple", sub: "Primary School" },
-            { id: 17, title: "Vote of Thanks", icon: "microphone-alt", color: "blue", sub: "" },
-            { id: 18, title: "Closing", icon: "door-open", color: "slate", sub: "" }
+            { id: 1, time: "3:00 PM", title: "Musical Interlude / Arrival", icon: "music", color: "blue", sub: "" },
+            { id: 2, time: "3:10 PM", title: "Opening Prayer", icon: "pray", color: "orange", sub: "" },
+            { id: 3, time: "3:15 PM", title: "Purpose of Gathering", icon: "info-circle", color: "blue", sub: "" },
+            { id: 11, time: "3:20 PM", title: "Pre-School Medley (Dance)", icon: "child", color: "pink", sub: "All I Want for Christmas" },
+            { id: 4, time: "3:30 PM", title: "Bible Reading", icon: "book-open", color: "purple", sub: "Primary School" },
+            { id: 5, time: "3:35 PM", title: "Carol: Once in Royal David's City", icon: "star", color: "red", sub: "Primary School", lyricsKey: "once" },
+            { id: 55, time: "3:35 PM", title: "Carol: Ding Dong Merrily on High", icon: "bell", color: "red", sub: "Primary School", lyricsKey: "dingdong" },
+            { id: 6, time: "3:40 PM", title: "Drama: The Nativity", icon: "theater-masks", color: "yellow", sub: "Preschool" },
+            { id: 13, time: "3:50 PM", title: "Ballet", icon: "running", color: "pink", sub: "" },
+            { id: 9, time: "4:00 PM", title: "Poem Recitation", icon: "feather-alt", color: "green", sub: "Primary School" },
+            { id: 7, time: "4:10 PM", title: "Carol: Hark! The Herald Angels Sing", icon: "music", color: "red", sub: "Primary School", lyricsKey: "hark" },
+            { id: 8, time: "4:10 PM", title: "Carol: Away in a Manger", icon: "baby", color: "red", sub: "Primary School", lyricsKey: "away" },
+            { id: 12, time: "4:15 PM", title: "Taekwondo Performance", icon: "fist-raised", color: "orange", sub: "" },
+            { id: 16, time: "4:20 PM", title: "Dance Performance", icon: "child", color: "purple", sub: "Primary School" },
+            { id: 99, time: "4:30 PM", title: "Poem Recitation (French)", icon: "comment", color: "indigo", sub: "French Class" },
+            { id: 10, time: "4:40 PM", title: "Carol: O Come, All Ye Faithful", icon: "users", color: "red", sub: "Congregational", lyricsKey: "ocome" },
+            { id: 15, time: "4:45 PM", title: "French Song", icon: "globe-europe", color: "indigo", sub: "French Class" },
+            { id: 17, time: "4:50 PM", title: "Vote of Thanks", icon: "microphone-alt", color: "blue", sub: "" },
+            { id: 18, time: "4:55 PM", title: "Closing", icon: "door-open", color: "slate", sub: "" }
         ];
 
         // --- Render List ---
@@ -288,7 +289,8 @@ By priest and people sungen.
                     <div class="card-glass rounded-xl p-3 border-l-4 border-${item.color}-500 hover:shadow-lg transition-shadow duration-300">
                         <div class="flex items-start justify-between">
                             <div>
-                                <h3 class="font-bold text-slate-800 text-sm">${item.title}</h3>
+                                <span class="text-xs font-bold text-orange-500 block mb-1 tracking-wide">${item.time}</span>
+                                <h3 class="font-bold text-slate-800 text-sm leading-tight">${item.title}</h3>
                                 ${item.sub ? `<p class="text-xs text-slate-500 mt-1 mb-1"><i class="fas fa-tag mr-1 text-slate-300"></i>${item.sub}</p>` : ''}
                                 ${buttonHtml}
                             </div>
