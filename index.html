@@ -41,6 +41,12 @@
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.5);
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .card-glass:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
         }
 
         .timeline-line {
@@ -57,18 +63,31 @@
             box-shadow: 0 0 15px rgba(249, 115, 22, 0.5); /* Orange glow */
         }
 
-        /* Lyrics Modal */
+        /* Smooth Lyrics Modal */
         .lyrics-modal {
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
             background: rgba(0,0,0,0.85);
             z-index: 100;
-            display: none;
+            display: flex;
             justify-content: center;
             align-items: center;
             padding: 20px;
             backdrop-filter: blur(5px);
+            
+            /* Transition Props */
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
         }
+
+        .lyrics-modal.active {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+        }
+
         .lyrics-content {
             background: white;
             width: 100%;
@@ -77,11 +96,26 @@
             border-radius: 20px;
             overflow-y: auto;
             position: relative;
-            animation: slideUp 0.3s ease-out;
+            transform: translateY(20px);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        @keyframes slideUp {
-            from { transform: translateY(50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
+
+        .lyrics-modal.active .lyrics-content {
+            transform: translateY(0);
+        }
+
+        /* List Item Animation */
+        .program-item {
+            opacity: 0;
+            transform: translateY(10px);
+            animation: fadeInUp 0.5s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
 </head>
@@ -95,8 +129,8 @@
 
         <!-- Header -->
         <header class="header-bg text-white pt-10 pb-16 px-6 text-center rounded-b-[40px] shadow-lg relative z-10">
-            <div class="w-24 h-24 mx-auto bg-white rounded-full p-1 mb-4 logo-glow relative z-20">
-                <!-- Using the uploaded logo filename -->
+            <div class="w-24 h-24 mx-auto bg-white rounded-full p-1 mb-4 logo-glow relative z-20 transition-transform duration-500 hover:scale-105">
+                <!-- LOGO UPDATED HERE -->
                 <img src="logo.png" alt="Sparkling Stars Logo" class="w-full h-full object-contain rounded-full" onerror="this.src='https://placehold.co/100x100?text=Logo'">
             </div>
             <h2 class="text-orange-400 font-bold uppercase tracking-widest text-xs mb-1">Sparkling Stars Int. School</h2>
@@ -112,7 +146,7 @@
         <div class="px-4 -mt-8 relative z-20">
             
             <!-- Welcome Card -->
-            <div class="bg-white rounded-2xl p-6 shadow-xl mb-8 border-t-4 border-orange-500 text-center">
+            <div class="bg-white rounded-2xl p-6 shadow-xl mb-8 border-t-4 border-orange-500 text-center transform transition-all hover:scale-[1.02] duration-300">
                 <h3 class="font-bold text-blue-900 text-lg mb-2">Welcome!</h3>
                 <p class="text-sm text-slate-500">Tap the "Lyrics" button on the carols below to sing along with us!</p>
             </div>
@@ -127,8 +161,8 @@
 
             <!-- Footer -->
             <div class="mt-12 text-center text-slate-400 text-xs pb-8">
-                <p class="mb-2"><i class="fas fa-heart text-red-400"></i> Merry Christmas</p>
-                <p>&copy; 2024 Sparkling Stars International School</p>
+                <p class="mb-2"><i class="fas fa-heart text-red-400 animate-pulse"></i> Merry Christmas</p>
+                <p>&copy; 2025 Sparkling Stars International School</p>
             </div>
         </div>
     </div>
@@ -138,7 +172,7 @@
         <div class="lyrics-content shadow-2xl">
             <div class="sticky top-0 bg-white border-b p-4 flex justify-between items-center z-10">
                 <h3 id="lyrics-title" class="font-bold text-lg text-blue-900 pr-4">Song Title</h3>
-                <button onclick="closeLyrics()" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center transition">
+                <button onclick="closeLyrics()" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center transition-colors">
                     <i class="fas fa-times text-slate-500"></i>
                 </button>
             </div>
@@ -265,7 +299,7 @@ By priest and people sungen.
             { id: 18, time: "4:55 PM", title: "Closing", icon: "door-open", color: "slate", sub: "" }
         ];
 
-        // --- Render List ---
+        // --- Render List with Staggered Animation ---
         const listContainer = document.getElementById('program-list');
 
         programItems.forEach((item, index) => {
@@ -280,13 +314,13 @@ By priest and people sungen.
             }
 
             const html = `
-                <div class="relative pl-12">
+                <div class="relative pl-12 program-item" style="animation-delay: ${index * 0.05}s">
                     <!-- Dot -->
                     <div class="absolute left-4 top-2 w-5 h-5 bg-${item.color}-500 rounded-full border-4 border-white shadow-md z-10 flex items-center justify-center">
                     </div>
                     
                     <!-- Card -->
-                    <div class="card-glass rounded-xl p-3 border-l-4 border-${item.color}-500 hover:shadow-lg transition-shadow duration-300">
+                    <div class="card-glass rounded-xl p-3 border-l-4 border-${item.color}-500">
                         <div class="flex items-start justify-between">
                             <div>
                                 <span class="text-xs font-bold text-orange-500 block mb-1 tracking-wide">${item.time}</span>
@@ -310,12 +344,12 @@ By priest and people sungen.
         function openLyrics(key, title) {
             modalTitle.innerText = title;
             modalBody.innerText = lyricsDB[key] || "Lyrics not found.";
-            modal.style.display = 'flex';
-            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            modal.classList.add('active'); // Use class for smooth transition
+            document.body.style.overflow = 'hidden';
         }
 
         function closeLyrics() {
-            modal.style.display = 'none';
+            modal.classList.remove('active');
             document.body.style.overflow = 'auto';
         }
 
